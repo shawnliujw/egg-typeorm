@@ -142,9 +142,11 @@ async function loadEntityAndModel(app: Application) {
   try {
     for (const file of files) {
       const entityPath = join(baseDir, file)
-      const entity = require(entityPath).default
-
+      const requiredModule = require(entityPath)
       const name = getModelName(file)
+      const entity = requiredModule.default || requiredModule[name]
+
+      
       app.context.repo[name] = getRepository(entity)
       app.context.entity[name] = entity
     }
