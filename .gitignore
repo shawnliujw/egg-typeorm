@@ -9,3 +9,5 @@ run/
 
 .history/
 yarn.lock
+*-lock.json
+.travis.yml
